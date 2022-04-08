@@ -20,11 +20,17 @@ class User(AbstractUser):
 
 
 class StudentProfile(models.Model):
+    """
+    Model for creating user profile
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 @receiver(reset_password_token_created)
 def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+    """
+    Mail format for resetting password
+    """
     email_plaintext_message = f" Open the given below url and do the post request by passing two fields \n one as token and other as password \n in token pass the token given below and in password field write your new password \n http://127.0.0.1:8000{reverse('password_reset:reset-password-request')}confirm/ \n\n token : {reset_password_token.key}"
     send_mail(
         # title:

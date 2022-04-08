@@ -27,18 +27,20 @@ class UsersRegister(APIView):
 
 class Student(APIView):
 
-    """
-    List all Students, or add new students.
-    """
-
     permission_classes = [IsTeacher]
 
     def get(self, request, format=None):
+        """
+        List all Students by teachers only
+        """
         users_list = User.objects.filter(is_student=True)
         serializer = StudentsSerializers(users_list, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        """
+        Add new students by teachers only.
+        """
         serializer = RegisterStudentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -47,18 +49,20 @@ class Student(APIView):
     
 class TeacherStudent(APIView):
 
-    """
-    List all Students, or add new students.
-    """
-
     permission_classes = [IsAdmin]
 
     def get(self, request, format=None):
+        """
+        List all Students and Teachers by admin only
+        """
         users_list = User.objects.filter(is_admin=False)
         serializer = TeacherStudentSerializers(users_list, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        """
+        Add new Students and Teachers by admin only
+        """
         serializer = RegisterTeacherStudentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
