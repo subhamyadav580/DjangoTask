@@ -1,3 +1,9 @@
+import email
+from email import utils
+from lib2to3.pgen2 import token
+from re import I
+from turtle import st
+from urllib import request
 from rest_framework import serializers
 from .models import User
 from rest_framework.validators import UniqueValidator
@@ -131,3 +137,5 @@ class RegisterTeacherStudentSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
