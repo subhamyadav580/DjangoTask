@@ -18,9 +18,9 @@
     cd studentmanagement
     ```
     
-5. Finally run the server
+4. Finally run the server
     ```
     python3 manage.py runserver
     ```
     
-6. That's it. Open web browser and hit the URL [http://127.0.0.1:8000](http://127.0.0.1:8000) and test the API. 
+5. That's it. Open web browser and hit the URL [http://127.0.0.1:8000](http://127.0.0.1:8000) and test the API. 
